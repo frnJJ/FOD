@@ -115,9 +115,8 @@ end;
 procedure insertar (em:emp; var e:arc);
 begin	
 	reset(e);
-	seek(e,filesize(e) - 1);
+	seek(e,filesize(e));
 	write(e,em);
-	writeln(em.nombre);
 	close(e);
 end;
 procedure esta(em:emp;var e:arc;var ok:boolean);
@@ -128,7 +127,6 @@ begin
 	reset(e);
 	while (not eof(e)) do begin
 		read(e,empleado);
-		writeln(empleado.nombre);
 		if (empleado.dni = em.dni) then
 			ok:=true;
 	end;
@@ -162,7 +160,8 @@ begin
 				writeln('INGRESE LA NUEVA EDAD');
 				readln(ne);
 				empleado.edad:= ne;
-				write(seek(e,FilePos(e)- 1),empleado);
+				seek(e,FilePos(e)- 1);
+				write(e,empleado);
 				seek(e,filesize(e));
 			end;
 		end;
@@ -171,15 +170,30 @@ begin
 		readln(id);
 	end;
 end;
+procedure exp (var e:arc; var txt:Text);
+var	
+	empleado:emp;
+begin	
+	assign(txt,'todos_empleados.txt');
+	reset(e);
+	rewrite(txt);
+	while (not eof(e))do begin	
+		read(e,empleado);	
+		writeln(txt, empleado.nombre,' ', empleado.edad, ' ',empleado.dni, ' ');
+	end;
+	close(e);
+	close(txt);
+end;
 var
 	e:arc;
 	mos:String;
 	n:char;
+	txt: Text;
 begin
 	n:='Z';
-	while (n <> 'G') do begin
+	while (n <> 'H') do begin
 		writeln('OPCIONES = ');
-		writeln('A --> CREAR ARCHIVO B--> LISTAR UN EMPLEADO POR NOMBRE O APELLIDO C--> LISTAR TODOS LOS EMPLEADOS D--> LISTAR EMPLEADOS CON POSIBILIDAD DE JUBILACION E--> AGREGAR EMPLEADOS F--> CAMBIAR EDAD DE EMPLEADOS G--> EXIT');
+		writeln('A --> CREAR ARCHIVO B--> LISTAR UN EMPLEADO POR NOMBRE O APELLIDO C--> LISTAR TODOS LOS EMPLEADOS D--> LISTAR EMPLEADOS CON POSIBILIDAD DE JUBILACION E--> AGREGAR EMPLEADOS F--> CAMBIAR EDAD DE EMPLEADOS G--> EXPORTAR ARCHIVO A .TXT H--> EXIT');
 		readln(n);
 		case (n) of 
 		    'A':A(mos,e);
@@ -188,7 +202,8 @@ begin
 			'D':jubilar(e);
 			'E':agregar(e);
 			'F':cedad(e);
-			'G':writeln('closing..');
+			'G':exp(e,txt);
+			'H':writeln('closing..');
 		end;
 	end;
 end.
