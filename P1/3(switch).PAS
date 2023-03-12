@@ -27,15 +27,12 @@ end;
 procedure cargar (var ar:arc);
 var
 	e:emp;
-	ok:String;
 begin
     rewrite(ar);
 	writeln('-----------------------NUEVO EMPLEADO----------------------------');
-	write('DESEA AGREGAR UN EMPLEADO? = ');
-	readln(ok);
-	while (ok = 'si') do begin
-		write('APELLIDO = ');
-		readln(e.apellido);
+	write('APELLIDO = ');
+	readln(e.apellido);
+	while (e.apellido <> 'fin') do begin
 		write('NOMBRE = ');
 		readln(e.nombre);
 		write('NUMERO DE EMPLEADO = ');
@@ -45,8 +42,9 @@ begin
 		write('EDAD = ');
 		readln(e.edad);
 		write(ar,e);
-		write('¿AGREGAR OTRO? = ');
-		readln(ok);
+		writeln('-----------------------NUEVO EMPLEADO----------------------------');
+		write('APELLIDO = ');
+		readln(e.apellido);
 	end;
 	close(ar);
 end;
@@ -172,7 +170,7 @@ begin
 		readln(id);
 	end;
 end;
-procedure exp (var e:arc; var txt: Text);
+procedure exp (var e:arc; var txt:Text);
 var	
 	empleado:emp;
 begin	
