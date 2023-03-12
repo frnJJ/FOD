@@ -8,6 +8,22 @@ type
 		dni:integer;
 	end;	
 	arc = file of emp;
+procedure leeremp (var e:emp);
+begin	
+	writeln('-----------------------NUEVO EMPLEADO----------------------------');
+	write('APELLIDO = ');
+	readln(e.apellido);
+	if (e.apellido <> 'fin') then begin
+		write('NOMBRE = ');
+		readln(e.nombre);
+		write('NUMERO DE EMPLEADO = ');
+		readln(e.num);
+		write('DNI =');
+		readln(e.dni);
+		write('EDAD = ');
+		readln(e.edad);
+	end;
+end;
 procedure cargar (var ar:arc);
 var
 	e:emp;
@@ -96,13 +112,48 @@ begin
 	readln(mos);
 	esp(mos,e);	
 end;
+procedure insertar (em:emp; var e:arc);
+begin	
+	reset(e);
+	seek(e,filesize(e) - 1);
+	write(e,em);
+	writeln(em.nombre);
+	close(e);
+end;
+procedure esta(em:emp;var e:arc;var ok:boolean);
+var	
+	empleado:emp;
+begin	
+	ok:=false;
+	reset(e);
+	while (not eof(e)) do begin
+		read(e,empleado);
+		writeln(empleado.nombre);
+		if (empleado.dni = em.dni) then
+			ok:=true;
+	end;
+	close(e);
+end;
+procedure agregar (var e:arc);
+var	
+	em:emp;
+	ok:boolean;
+begin	
+	leeremp(em);
+	while (em.apellido <> 'fin') do begin
+		esta(em,e,ok);
+		if (not ok) then	
+			insertar(em,e);
+		leeremp(em);
+	end;
+end;
 var
 	e:arc;
 	mos:String;
 	n:char;
 begin
 	n:='Z';
-	while (n <> 'E') do begin
+	while (n <> 'F') do begin
 		writeln('OPCIONES = ');
 		writeln('A --> CREAR ARCHIVO B--> LISTAR UN EMPLEADO POR NOMBRE O APELLIDO C--> LISTAR TODOS LOS EMPLEADOS D--> LISTAR EMPLEADOS CON POSIBILIDAD DE JUBILACION E--> EXIT');
 		readln(n);
@@ -111,7 +162,8 @@ begin
 			'B':B(mos,e);
 			'C':listar(e);
 			'D':jubilar(e);
-			'E':writeln('closing..');
+			'E':agregar(e);
+			'F':writeln('closing..');
 		end;
 	end;
 end.
