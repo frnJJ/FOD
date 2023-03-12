@@ -147,15 +147,39 @@ begin
 		leeremp(em);
 	end;
 end;
+procedure cedad (var e:arc);
+var		
+	empleado:emp;
+	id,ne:integer;
+begin	
+	writeln('INGRESE DNI DEL EMPLEADO PARA MODIFICAR SU EDAD');
+	readln(id);
+	while (id <> 00) do begin
+		reset(e);
+		while (not eof (e)) do begin
+			read(e,empleado);
+			if (empleado.dni = id) then begin
+				writeln('INGRESE LA NUEVA EDAD');
+				readln(ne);
+				empleado.edad:= ne;
+				write(seek(e,FilePos(e)- 1),empleado);
+				seek(e,filesize(e));
+			end;
+		end;
+		close(e);
+		writeln('INGRESE DNI DEL EMPLEADO PARA MODIFICAR SU EDAD');
+		readln(id);
+	end;
+end;
 var
 	e:arc;
 	mos:String;
 	n:char;
 begin
 	n:='Z';
-	while (n <> 'F') do begin
+	while (n <> 'G') do begin
 		writeln('OPCIONES = ');
-		writeln('A --> CREAR ARCHIVO B--> LISTAR UN EMPLEADO POR NOMBRE O APELLIDO C--> LISTAR TODOS LOS EMPLEADOS D--> LISTAR EMPLEADOS CON POSIBILIDAD DE JUBILACION E--> EXIT');
+		writeln('A --> CREAR ARCHIVO B--> LISTAR UN EMPLEADO POR NOMBRE O APELLIDO C--> LISTAR TODOS LOS EMPLEADOS D--> LISTAR EMPLEADOS CON POSIBILIDAD DE JUBILACION E--> AGREGAR EMPLEADOS F--> CAMBIAR EDAD DE EMPLEADOS G--> EXIT');
 		readln(n);
 		case (n) of 
 		    'A':A(mos,e);
@@ -163,7 +187,8 @@ begin
 			'C':listar(e);
 			'D':jubilar(e);
 			'E':agregar(e);
-			'F':writeln('closing..');
+			'F':cedad(e);
+			'G':writeln('closing..');
 		end;
 	end;
 end.
