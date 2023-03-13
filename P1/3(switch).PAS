@@ -150,6 +150,7 @@ var
 	empleado:emp;
 	id,ne:integer;
 begin	
+	writeln('   ');
 	writeln('INGRESE DNI DEL EMPLEADO PARA MODIFICAR SU EDAD');
 	readln(id);
 	while (id <> 00) do begin
@@ -191,9 +192,9 @@ var
 	txt: Text;
 begin
 	n:='Z';
-	while (n <> 'H') do begin
+	while (n <> 'I') do begin
 		writeln('OPCIONES = ');
-		writeln('A --> CREAR ARCHIVO B--> LISTAR UN EMPLEADO POR NOMBRE O APELLIDO C--> LISTAR TODOS LOS EMPLEADOS D--> LISTAR EMPLEADOS CON POSIBILIDAD DE JUBILACION E--> AGREGAR EMPLEADOS F--> CAMBIAR EDAD DE EMPLEADOS G--> EXPORTAR ARCHIVO A .TXT H--> EXIT');
+		writeln('A --> CREAR ARCHIVO B--> LISTAR UN EMPLEADO POR NOMBRE O APELLIDO C--> LISTAR TODOS LOS EMPLEADOS D--> LISTAR EMPLEADOS CON POSIBILIDAD DE JUBILACION E--> AGREGAR EMPLEADOS F--> CAMBIAR EDAD DE EMPLEADOS G--> EXPORTAR ARCHIVO A .TXT I--> EXIT');
 		readln(n);
 		case (n) of 
 		    'A':A(mos,e);
@@ -203,7 +204,7 @@ begin
 			'E':agregar(e);
 			'F':cedad(e);
 			'G':exp(e,txt);
-			'H':writeln('closing..');
+			'I':writeln('closing..');
 		end;
 	end;
 end.
