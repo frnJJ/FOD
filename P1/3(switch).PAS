@@ -195,7 +195,8 @@ begin
 	while (not eof(e)) do begin	
 		read(e,empleado);
 		if (empleado.dni = 00)then begin
-			writeln(txt,empleado);
+			writeln(txt,' NOMBRE = ',empleado.nombre,' APELLIDO = ',empleado.apellido,' DNI = ',empleado.dni,' NUMERO DE EMPLEADO = ',empleado.num);
+		end;
 	end;
 	close(e);
 	close(txt);
