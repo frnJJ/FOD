@@ -153,7 +153,7 @@ begin
 	writeln('   ');
 	writeln('INGRESE DNI DEL EMPLEADO PARA MODIFICAR SU EDAD');
 	readln(id);
-	while (id <> 00) do begin
+	while (id <> 0) do begin
 		reset(e);
 		while (not eof (e)) do begin
 			read(e,empleado);
@@ -185,6 +185,21 @@ begin
 	close(e);
 	close(txt);
 end;
+procedure dni_cero (var e:arc; var txt: Text );
+var	
+	empleado:emp;
+begin	
+	reset(e);
+	assign(txt,'Empleadocondni00.txt');
+	rewrite(txt);
+	while (not eof(e)) do begin	
+		read(e,empleado);
+		if (empleado.dni = 00)then begin
+			writeln(txt,empleado);
+	end;
+	close(e);
+	close(txt);
+end;
 var
 	e:arc;
 	mos:String;
@@ -194,7 +209,7 @@ begin
 	n:='Z';
 	while (n <> 'I') do begin
 		writeln('OPCIONES = ');
-		writeln('A --> CREAR ARCHIVO B--> LISTAR UN EMPLEADO POR NOMBRE O APELLIDO C--> LISTAR TODOS LOS EMPLEADOS D--> LISTAR EMPLEADOS CON POSIBILIDAD DE JUBILACION E--> AGREGAR EMPLEADOS F--> CAMBIAR EDAD DE EMPLEADOS G--> EXPORTAR ARCHIVO A .TXT I--> EXIT');
+		writeln('A --> CREAR ARCHIVO B--> LISTAR UN EMPLEADO POR NOMBRE O APELLIDO C--> LISTAR TODOS LOS EMPLEADOS D--> LISTAR EMPLEADOS CON POSIBILIDAD DE JUBILACION E--> AGREGAR EMPLEADOS F--> CAMBIAR EDAD DE EMPLEADOS G--> EXPORTAR ARCHIVO A .TXT H--> EXPORTAR ARCHICO .TXT CON EMPLEADOS CON DNI 00 I--> EXIT');
 		readln(n);
 		case (n) of 
 		    'A':A(mos,e);
@@ -204,6 +219,7 @@ begin
 			'E':agregar(e);
 			'F':cedad(e);
 			'G':exp(e,txt);
+			'H':dni_cero(e,txt);
 			'I':writeln('closing..');
 		end;
 	end;
