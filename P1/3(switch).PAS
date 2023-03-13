@@ -105,7 +105,6 @@ begin
 	readln(mos);
 	assign(e,mos);
 	cargar(e);
-	writeln(filesize(e));
 end;
 procedure B (mos:String; var e:arc);
 begin
