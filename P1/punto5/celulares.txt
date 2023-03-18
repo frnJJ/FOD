@@ -1,15 +1,24 @@
-1 1.2300000000000000E+004 Nokia
-1 3 Duro contra golpes
+1  1.2300000000000000E+004   Nokia
+0 3   Duro contra golpes
 MILCIEN
-2 1.4000000000000000E+005 Iphone
-4 3 Ultima tecnologia
+2  1.4000000000000000E+005   Iphone
+4 3   Ultima tecnologia
 PROMAX
-3 1.2000020000000000E+005 Samsung
-3 3 Celular duradero
+3  1.2000020000000000E+005   Samsung
+3 3   Celular duradero
 S6
-4 5.6000000000000000E+004 Motorola
-1 3 Buena resolucion de camara
+4  5.6000000000000000E+004   Motorola
+1 3   Buena resolucion de camara
 G5
-5 6.0000900000000001E+004 Huawei
-10 3 Economico
+5  6.0000900000000001E+004   Huawei
+10 3   Economico
 JASUNJAI
+33  1.0000000000000000E+005   Apple
+0 3   iPhone viejo
+Iphone 7
+43  1.2000000000000000E+005  CAT
+12 4  Duro
+CAT 02
+342  1.2000000000000000E+005 Razer
+0 4 nuevo
+DXIDIAG

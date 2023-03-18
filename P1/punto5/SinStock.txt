@@ -1,0 +1,9 @@
+1  1.2300000000000000E+004   Nokia
+0 3   Duro contra golpes
+MILCIEN
+33  1.0000000000000000E+005   Apple
+0 3   iPhone viejo
+Iphone 7
+342  1.2000000000000000E+005 Razer
+0 4 nuevo
+DXIDIAG
