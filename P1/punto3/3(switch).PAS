@@ -200,6 +200,23 @@ begin
 	end;
 	close(e);
 	close(txt);
+end;		
+procedure borrar (var a:arc);
+var
+	pos:integer;
+	aux: emp;
+begin
+	reset(a);
+	writeln('ingrese la posicion a borrar (0 a N)');
+	readln(pos);
+	seek(a,filesize(a)-1);
+	read(a,aux);
+	seek(a,pos);
+	write(a,aux);
+	seek(a,filesize(a)-1);
+	Truncate(a);
+	writeln(filesize(a));
+	close(a);
 end;
 var
 	e:arc;
@@ -222,6 +239,7 @@ begin
 			'G':exp(e,txt);
 			'H':dni_cero(e,txt);
 			'I':writeln('closing..');
+			'J':borrar(e);
 		end;
 	end;
 end.
